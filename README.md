@@ -4,7 +4,7 @@
 This repository contains the content for the introductory workshop in programming with Julia, hosted at API in January 2025.
 
 >[!NOTE]
-> Most of the content in this workshop is adapted from the [Zero-to-Hero Julia workshop](https://github.com/Datseris/Zero2Hero-JuliaWorkshop/tree/main). All credits go to the authors.
+> Most of the content in this workshop is adapted from the [Zero-to-Hero Julia workshop](https://github.com/Datseris/Zero2Hero-JuliaWorkshop/tree/main), in addition to some content from the [JuliaUCL24 HPC workshop](https://github.com/carstenbauer/JuliaUCL24). All credits go to the authors of those workshops, and feel free to check them out for even more resources.
 
 ## Aim
 
@@ -35,7 +35,3 @@ Alternatively, you can also start a Julia REPL session and call
 ```julia
 julia> include("install_and_compile.jl")
 ```
-
-## Structure and usage
-
-This repository is structured with subfolders for each topic, with each directory containing a Jupyter notebook containing theory and exercises.

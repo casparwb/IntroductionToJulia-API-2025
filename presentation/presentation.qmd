@@ -4,13 +4,39 @@ title: "Introduction to Julia workshop"
 format: 
     julia-revealjs:
         slide-number: true
-        logo: figures/api_logo_big_black.png
-        footer: API January 2025
+        # logo: figures/api_logo_big_black.png
+        footer: API, January 2025
         transition: none
-jupyter: julia-1.11
-execute: 
-  cache: true
+# jupyter: julia-1.11
+# execute: 
+#   cache: true
 ---
+
+# Before we start!
+
+1. If you don't have Julia installed: download `juliaup` from https://github.com/JuliaLang/juliaup
+
+2. Download the workshop repository to your computer:
+    - [https://github.com/casparwb/IntroductionToJulia-API-2025](https://github.com/casparwb/IntroductionToJulia-API-2025)
+3. In the root of the repository directory, run in your terminal
+
+`> julia install_and_compile.jl`
+
+- Will download, install, and compile the dependencies. 
+- Might take a few minutes.
+
+
+# Who am I?
+
+## ... and who am I to organize this workshop?
+
+- Came across Julia in 2018 - perfect timing!
+- One language that can do all
+- Used Julia for most of my classes
+    - At least those where the professor let me use it
+- Used it for my MSc thesis
+- Currently using it for my PhD work
+- Know a lot about Julia, but I am not a software engineer
 
 # The Julia programming language
 
@@ -19,15 +45,9 @@ execute:
 ## In a nutshell
 A dynamic, general-purpose programming language designed to be both accessible and fast.
 
-## In a nutshell
-
 ::: {.fragment .fade-in-then-semi-out}
 - Born at MIT in 2009, first release in 2011.
     - Jeff Bezanson, Stefan Karpinski, Viral B. Shah, Alan Edelman
-:::
-
-::: {.fragment .fade-in-then-semi-out}
-- Idea: A technical language that is both fast, and easy to develop.
 :::
 
 ::: {.fragment .fade-in-then-semi-out}
@@ -35,7 +55,7 @@ A dynamic, general-purpose programming language designed to be both accessible a
 :::
 
 ::: {.fragment .fade-in-then-semi-out}
-- Still very actively developed, current version ~~v1.10.5~~ v1.11
+- Still very actively developed, current version v1.11, with v1.12 on the horizon.
 :::
 
 
@@ -70,8 +90,7 @@ A dynamic, general-purpose programming language designed to be both accessible a
 :::: {.columns}
 
 ::: {.column width="45%"}
-- Easy parallelism (including GPU)
-- GPU accelerated plotting
+- Easy parallelism 
 - Call C and Fortran functions natively
 - Easy to call Python code
 - Automatic differentiation
@@ -86,40 +105,6 @@ A dynamic, general-purpose programming language designed to be both accessible a
 
 ::::
 
-# Julia lets you do prototyping, deployment, and analysis all in one.
-
-# Julia's performance
-
-## Microbenchmarks
-
-![](figures/benchmarks.jpeg){fig-align="center"}
-
-## Other benchmarks {.scrollable}
-::: {.incremental}
-- DataFrames.jl vs. pandas
-    - Consistently 10x, 20x, up to 100x faster on various tasks ([Database-like ops benchmark](https://duckdblabs.github.io/db-benchmark/))
-- DifferentialEquations.jl
-    - Outperforms Matlab, SciPy, Sundials, deSolve ![](figures/diffeq_benchmarks.png)
-        - [The SciML Benchmarks](https://docs.sciml.ai/SciMLBenchmarksOutput/stable/MultiLanguage/ode_wrapper_packages/#ODE-Solver-Multi-Language-Wrapper-Package-Work-Precision-Benchmarks-(MATLAB,-SciPy,-Julia,-deSolve-(R)))
-:::
-
-## Consequence {.smaller}
-
-- Easy to write your own code that is fast and accessible. 
-- Packages do not need to rely on interfacing into languages like C and Fortran.
-- No black box of mixed languages.
-    - Julia all the way down
-
-![](figures/alwayshasbeen.png){fig-align="center"}
-
-## Examples
-
-::: {.incremental}
-- Numpy: ![](figures/numpy.png){width=50%}
-- Scipy: ![](figures/scipy.png){width=50%}
-- Astropy: ![](figures/astropy.png){width=50%}
-- OrdinaryDiffEq.jl, Turing.jl, Syzygy.jl, Optimization.jl ![](figures/diffeq-turing-syzygy.png){width=50% fig-align="center"}
-:::
 
 ## How is Julia
 
@@ -135,172 +120,102 @@ A dynamic, general-purpose programming language designed to be both accessible a
 - Interactive
 :::
 
-
-## What does Julia look like?
-
-##
-```{julia}
-#| echo: true
-using LinearAlgebra
-using Unitful: Unitful, Mass, Length, Velocity, @u_str
-using Unitful.DefaultSymbols: kg, m, s, km, J
-using UnitfulAstro
-
-const G = 6.674e-11m^3/kg/s^2
-
-struct Star{L <: Length, V <: Velocity}
-    mass::Mass
-    position::Vector{L}
-    velocity::Vector{V}
-end
-
-kinetic_energy(s::Star) = s.mass*(s.velocity ⋅ s.velocity)/2
-
-function potential_energy(star1::Star, star2::Star)
-    m₁ = star1.mass
-    m₂ = star2.mass
-    r = norm(star1.position - star2.position)
-    return -G*m₁*m₂/r
-end;
-```
-
-##
-
-```{.julia code-line-numbers="1-4|6|8-12|14|16-21"}
-using LinearAlgebra
-using Unitful: Unitful, Mass, Length, Velocity, @u_str
-using Unitful.DefaultSymbols: kg, m, s, km, J
-using UnitfulAstro
-
-const G = 6.674e-11m^3/kg/s^2
-
-struct Star{L <: Length, V <: Velocity}
-    mass::Mass
-    position::Vector{L}
-    velocity::Vector{V}
-end
-
-kinetic_energy(s::Star) = s.mass*(s.velocity ⋅ s.velocity)/2
-
-function potential_energy(star1::Star, star2::Star)
-    m₁ = star1.mass
-    m₂ = star2.mass
-    r = norm(star1.position - star2.position)
-    return -G*m₁*m₂/r
-end
-```
-
-##
-
-```{julia}
-#| echo: true
-#| code-line-numbers: "3-9|11|12|14-18"
-#| output-location: fragment
-
-erg = u"erg"
-
-star1 = Star(1.0u"Msun",
-             [1.0,  0.0]u"Rsun", 
-             [0.0, -5.0]u"km/s")
-             
-star2 = Star(2.0u"Msun", 
-             [-0.5, 0.0]u"Rsun", 
-             [ 0.0, 3.0]u"km/s")
-
-T = kinetic_energy(star1)
-U = potential_energy(star1, star2)
-
-@show T
-@show U
-
-@show erg(T)
-@show erg(U);
-```   
-
-# Multiple dispatch
-
-## A simple example
-
-```{julia}
-#| echo: true
-#| output-location: fragment
-
-struct Dog end
-struct Cat end
-
-speak(d::Dog) = println("Woof!")
-speak(c::Cat) = println("Meow!")
-
-animals = [Dog(), Cat()]
-
-for animal in animals
-    speak(animal)
-end
-```
-
-## A better example
-
-```{julia}
-#| echo: true
-#| code-line-numbers: "1|3|5|7|9|11|13"
-#| output-location: fragment
-
-using Measurements, OrdinaryDiffEqTsit5
-
-f(u, p, t) = p[1]*u
-
-u0 = 0.5 ± 0.0
-
-tspan = (0.0 ± 0.0, 1.0 ± 0.0)
-
-p = [1.01 ± 0.01]
-
-prob = ODEProblem(f, u0, tspan, p)
-
-sol = solve(prob, Tsit5(), reltol=1e-8, abstol=1e-8)
-```
-
-
-
 # What's bad about Julia?
 
-## What's bad about Julia? {.smaller}
+## What's bad about Julia?
 
-:::: {.columns}
+<!-- :::: {.columns} -->
 
-::: {.incremental .column width="60%"}
+::: {.incremental}
 - Startup latency
     - Time To First X (TTFX)
         - Getting better every year
+    - Precompiling new packages
 - Easy to learn, hard to master (like baking bread!)
     - Many new concepts, eg. multiple dispatch, metaprogramming
 - ~~No small binaries~~
-    - This is now possible.
+    - This is soon possible.
+- Unintuitive workflow/file dependency
 :::
 
-::: {.column width="40%"}
-![](figures/ttfdx.png)
-:::
+# This workshop
 
-::::
+- Aimed at people with zero experience in Julia.
+- Will cover:
+    - Basic fundamentals: variables, functions, string manipulation, etc...
+    - More advanced fundamentals: the type system, multiple dispatch, performance considerations.
+- A taste of the Julia ecosystem
 
-## Okay I'm intriged...
+## Workshop content
 
-... but I don't want to re-write all my spaghetti code!!
+![](survey.png){width="80%"}
 
-. . .
 
-Fair point! But a few things to note:
+## Workshop contents
+
+- A taste of the Julia ecosystem
+    - Plotting
+    - Tabular data analysis
+    - (Ordinary) differential equations
+    - Mathematical optimization
+    - Probability distributions
+    - Calling Python in Julia
+    - Multithreading
+
+
+## Structure of the workshop
 
 ::: {.incremental}
-- Julia gets you 90% of the way with 10% of the effort
-- You can easily call Python code in Julia
-    - So start with all Python and gradually swap out parts
+- Notebooks with theory, examples, code, and exercises
+- Four fundamental notebooks
+    - basics (1), plotting (2), multiple dispatch (3), performance (4)
+    - Everyone should do (1) and (2), recommend (2) and (3)
+- Six notebooks covering a few packages in the Julia ecosystem.
+- You can prioritize which you want to do.
 :::
 
-# Thank you!
+## Organizational
 
-Questions?
+- Have a question? Write your name on the board.
+- Make use of package documentation. 
+- Won't get through everything.
+    - Most important is the basics
+- Feel free to use the resources in this repository.
+
+
+# A taste of the ecosystem
+
+## DifferentialEquations.jl
+
+::: {.incremental}
+- A huge package for solving differential equations (DEs)
+- Support for
+    - Ordinary DEs, split ODEs, stochastic ODEs, differential algebraic equations (DAEs), delay DEs, many more
+- One of, if not the fastest DE solver in any language
+- Supports GPU acceleration
+- Automatic differentiation
+- Arbitrary precision arithmetic
+:::
+
+## DifferentialEquations.jl
+::: {.incremental}
+- You never need all the functionality
+- Takes a long time to precompile
+- Package is split into sub-packagse
+- Ordinary differential equations: OrdinaryDiffEq.jl
+- Still a big package, contains on the order [100s of solvers](https://docs.sciml.ai/DiffEqDocs/stable/solvers/ode_solve/)
+- Also split into sub-packages for different solvers
+:::
+
+## DataFrames.jl
+- Julia package for working with tabular data
+- Similar design to pandas
+- Well integrated into the Julia ecosystem
+- Fast, multithreaded
+- Intuitive syntax 
+- Feature rich
+
+## 
 
 ## Resources
 
@@ -313,10 +228,45 @@ Questions?
 - [CUDA in Julia](https://cuda.juliagpu.org/stable/)
 - [Julia on HPC](https://github.com/JuliaParallel/JUHPC)
 
+## Package selection
+
+<!-- :::: {.columns} -->
+
+<!-- ::: {.column width="45%"} -->
+- Astronomy -> [JuliaAstro](https://juliaastro.org/dev/)
+- Plotting -> [Makie](https://docs.makie.org/v0.22/), [Plots](https://docs.juliaplots.org/latest/tutorial/)
+- Linear systems/ least squares -> [LinearSolve](https://docs.sciml.ai/LinearSolve/dev/)
+- Sparse arrays -> [SparseArrays](https://docs.julialang.org/en/v1/stdlib/SparseArrays/#Sparse-Arraysz)
+- Interpolation -> [DataInterpolations](https://github.com/PumasAI/DataInterpolations.jl), [Interpolations](https://juliamath.github.io/Interpolations.jl/latest/)
+- Polynomial roots -> [Polynomials](https://juliamath.github.io/Polynomials.jl/stable/#Root-finding-1)
+- Rootfinding -> [NonlinearSolve](https://nonlinearsolve.sciml.ai/)
+- Finite difference -> [FiniteDifference](https://juliadiff.org/FiniteDifferences.jl/latest/), [FiniteDiff](https://github.com/JuliaDiff/FiniteDiff.jl)
+
+## Package selection
+
+- Integration -> [Integrals](https://integrals.sciml.ai/), [QuadGK](https://juliamath.github.io/QuadGK.jl/stable/)
+- Optimization -> [Optimization](https://docs.sciml.ai/Optimization/stable/)
+- Differential equations -> [DifferentialEquations](https://diffeq.sciml.ai/)
+- Automatic differentiation -> [DifferentiationInterface](https://juliadiff.org/DifferentiationInterface.jl/DifferentiationInterface/stable/)
+- Fast Fourier Transform -> [FFTW](https://github.com/JuliaMath/FFTW.jl)
+- Symbolic CAS ->[Symbolics](https://symbolics.juliasymbolics.org/dev/)
+- Units -> [Unitful](https://painterqubits.github.io/Unitful.jl/stable/)
+
+## Package selection
+
+See more at the [SciML website](https://docs.sciml.ai/Overview/stable/overview/#Overview-of-Computational-Science-in-Julia-with-SciML)
+<!-- ::: -->
+
+<!-- ::: {.column width="45%"} -->
+<!-- Plots, Makie -->
+<!-- Test -->
+<!-- ::: -->
+<!-- :::: -->
+
 # Extra slides
 
 ## CUDA
-
+<!-- 
 ```{.julia}
 using CUDA
 
@@ -390,6 +340,6 @@ Gr⁻² = Gr⁻¹*r⁻¹
 # PN-1 acceleration
 ai = @. n*(Gr⁻²*m₂)*(5*Gr⁻¹*m₁ + 4*Gr⁻¹*m₂ + 3/2*nv₂^2 - v₁² + 4*v₁v₂ - 2*v₂²) +
         (4*nv₁ - 3*nv₂)*v̄
-```
+``` -->
 
 

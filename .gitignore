@@ -2,3 +2,7 @@ Zero2Hero-JuliaWorkshop-main
 Manifest.toml
 JuliaUCL24
 .CondaPkg
+
+
+presentation/presentation_files
+presentation/presentation_old.md

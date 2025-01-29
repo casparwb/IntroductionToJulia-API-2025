@@ -24,7 +24,9 @@ This workshop is aimed at people with no experience with the Julia programming l
 
 The only requirement to run the contents of this repository is a working Julia installation. The recommended way of installing Julia is via the  `juliaup` version manager. Installation instructions can be found on the [juliaup github page](https://github.com/JuliaLang/juliaup).
 
-This workshop uses several packages, all of which can be installed by navigating to the root of this repository and running in your terminal.
+## Installation and setup
+
+This workshop uses several packages, all of which can be installed by navigating to the root of this repository (after having cloned it to your local computer) and running in your terminal
 
 ```bash
 > julia install_and_compile.jl

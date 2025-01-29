@@ -14,16 +14,16 @@ format:
 
 # Before we start!
 
-1. If you don't have Julia installed: download `juliaup` from https://github.com/JuliaLang/juliaup
+1. If you don't have Julia installed: download `juliaup` from [https://github.com/JuliaLang/juliaup](https://github.com/JuliaLang/juliaup)
 
-2. Download the workshop repository to your computer:
+2. Clone the workshop repository to your computer:
     - [https://github.com/casparwb/IntroductionToJulia-API-2025](https://github.com/casparwb/IntroductionToJulia-API-2025)
 3. In the root of the repository directory, run in your terminal
 
 `> julia install_and_compile.jl`
 
-- Will download, install, and compile the dependencies. 
-- Might take a few minutes.
+    - Will download, install, and compile the dependencies. 
+    - Might take a few minutes.
 
 
 # Who am I?
@@ -40,21 +40,21 @@ format:
 
 # The Julia programming language
 
-![](figures/Julia_(programming_language)_logo.png){width=5%  fig-align="center"}
+![](julia-logo.png){width=5%  fig-align="center"}
 
 ## In a nutshell
 A dynamic, general-purpose programming language designed to be both accessible and fast.
 
-::: {.fragment .fade-in-then-semi-out}
+::: {.fragment}
 - Born at MIT in 2009, first release in 2011.
     - Jeff Bezanson, Stefan Karpinski, Viral B. Shah, Alan Edelman
 :::
 
-::: {.fragment .fade-in-then-semi-out}
+::: {.fragment}
 - Version 1.0 released in 2018
 :::
 
-::: {.fragment .fade-in-then-semi-out}
+::: {.fragment}
 - Still very actively developed, current version v1.11, with v1.12 on the horizon.
 :::
 
@@ -122,29 +122,45 @@ A dynamic, general-purpose programming language designed to be both accessible a
 
 # What's bad about Julia?
 
-## What's bad about Julia?
+## What's bad about Julia? {.smaller}
 
 <!-- :::: {.columns} -->
 
-::: {.incremental}
+<!-- ::: {.incremental} -->
+::: {.fragment .fade-in-then-semi-out}
 - Startup latency
     - Time To First X (TTFX)
         - Getting better every year
     - Precompiling new packages
+:::
+
+::: {.fragment .fade-in-then-semi-out}
 - Easy to learn, hard to master (like baking bread!)
     - Many new concepts, eg. multiple dispatch, metaprogramming
-- ~~No small binaries~~
-    - This is soon possible.
+:::
+
+::: {.fragment .fade-in-then-semi-out}
+- ~~No small binaries~~ This is soon possible.
+:::
+
+::: {.fragment .fade-in-then-semi-out}
 - Unintuitive workflow/file dependency
 :::
 
 # This workshop
-
+::: {.fragment .fade-in-then-semi-out}
 - Aimed at people with zero experience in Julia.
+:::
+
+::: {.fragment .fade-in-then-semi-out}
 - Will cover:
     - Basic fundamentals: variables, functions, string manipulation, etc...
     - More advanced fundamentals: the type system, multiple dispatch, performance considerations.
+:::
+
+::: {.fragment .fade-in-then-semi-out}
 - A taste of the Julia ecosystem
+:::
 
 ## Workshop content
 
@@ -251,10 +267,10 @@ A dynamic, general-purpose programming language designed to be both accessible a
 - Fast Fourier Transform -> [FFTW](https://github.com/JuliaMath/FFTW.jl)
 - Symbolic CAS ->[Symbolics](https://symbolics.juliasymbolics.org/dev/)
 - Units -> [Unitful](https://painterqubits.github.io/Unitful.jl/stable/)
+- Bayesian inference -> [Turing](https://turinglang.org/)
 
-## Package selection
-
-See more at the [SciML website](https://docs.sciml.ai/Overview/stable/overview/#Overview-of-Computational-Science-in-Julia-with-SciML)
+#
+ See more at the [SciML website](https://docs.sciml.ai/Overview/stable/overview/#Overview-of-Computational-Science-in-Julia-with-SciML)
 <!-- ::: -->
 
 <!-- ::: {.column width="45%"} -->
@@ -263,10 +279,10 @@ See more at the [SciML website](https://docs.sciml.ai/Overview/stable/overview/#
 <!-- ::: -->
 <!-- :::: -->
 
-# Extra slides
+# Examples
 
 ## CUDA
-<!-- 
+
 ```{.julia}
 using CUDA
 
@@ -322,7 +338,7 @@ check_collision(body1::Star{T, tT <: BlackHole},    body2::Star{T, tT <: BlackHo
 
 ## Unicode
 
-![](figures/pn1.png){width=60%}
+![](pn1.png){width=60%}
 
 
 ```{.julia}
@@ -340,6 +356,6 @@ Gr⁻² = Gr⁻¹*r⁻¹
 # PN-1 acceleration
 ai = @. n*(Gr⁻²*m₂)*(5*Gr⁻¹*m₁ + 4*Gr⁻¹*m₂ + 3/2*nv₂^2 - v₁² + 4*v₁v₂ - 2*v₂²) +
         (4*nv₁ - 3*nv₂)*v̄
-``` -->
+```
 
 

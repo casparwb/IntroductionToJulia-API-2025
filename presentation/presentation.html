@@ -28,6 +28,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="presentation_files/libs/revealjs/dist/theme/quarto.css">
   <link href="presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -383,18 +448,16 @@
 <section id="before-we-start" class="title-slide slide level1 center">
 <h1>Before we start!</h1>
 <ol type="1">
-<li><p>If you don’t have Julia installed: download <code>juliaup</code> from https://github.com/JuliaLang/juliaup</p></li>
-<li><p>Download the workshop repository to your computer:</p>
+<li><p>If you don’t have Julia installed: download <code>juliaup</code> from <a href="https://github.com/JuliaLang/juliaup">https://github.com/JuliaLang/juliaup</a></p></li>
+<li><p>Clone the workshop repository to your computer:</p>
 <ul>
 <li><a href="https://github.com/casparwb/IntroductionToJulia-API-2025">https://github.com/casparwb/IntroductionToJulia-API-2025</a></li>
 </ul></li>
 <li><p>In the root of the repository directory, run in your terminal</p></li>
 </ol>
 <p><code>&gt; julia install_and_compile.jl</code></p>
-<ul>
-<li>Will download, install, and compile the dependencies.</li>
-<li>Might take a few minutes.</li>
-</ul>
+<pre><code>- Will download, install, and compile the dependencies. 
+- Might take a few minutes.</code></pre>
 </section>
 
 <section>
@@ -420,11 +483,11 @@
 <section id="the-julia-programming-language" class="title-slide slide level1 center">
 <h1>The Julia programming language</h1>
 
-<img data-src="figures/Julia_(programming_language)_logo.png" class="quarto-figure quarto-figure-center r-stretch" style="width:5.0%"></section>
+<img data-src="julia-logo.png" class="quarto-figure quarto-figure-center r-stretch" style="width:5.0%"></section>
 <section id="in-a-nutshell" class="slide level2">
 <h2>In a nutshell</h2>
 <p>A dynamic, general-purpose programming language designed to be both accessible and fast.</p>
-<div class="fragment fade-in-then-semi-out">
+<div class="fragment">
 <ul>
 <li>Born at MIT in 2009, first release in 2011.
 <ul>
@@ -432,12 +495,12 @@
 </ul></li>
 </ul>
 </div>
-<div class="fragment fade-in-then-semi-out">
+<div class="fragment">
 <ul>
 <li>Version 1.0 released in 2018</li>
 </ul>
 </div>
-<div class="fragment fade-in-then-semi-out">
+<div class="fragment">
 <ul>
 <li>Still very actively developed, current version v1.11, with v1.12 on the horizon.</li>
 </ul>
@@ -518,43 +581,63 @@
 <h1>What’s bad about Julia?</h1>
 
 </section>
-<section id="whats-bad-about-julia-1" class="slide level2">
+<section id="whats-bad-about-julia-1" class="slide level2 smaller">
 <h2>What’s bad about Julia?</h2>
 <!-- :::: {.columns} -->
-<div>
+<!-- ::: {.incremental} -->
+<div class="fragment fade-in-then-semi-out">
 <ul>
-<li class="fragment">Startup latency
+<li>Startup latency
 <ul>
-<li class="fragment">Time To First X (TTFX)
+<li>Time To First X (TTFX)
 <ul>
-<li class="fragment">Getting better every year</li>
+<li>Getting better every year</li>
 </ul></li>
-<li class="fragment">Precompiling new packages</li>
+<li>Precompiling new packages</li>
 </ul></li>
-<li class="fragment">Easy to learn, hard to master (like baking bread!)
+</ul>
+</div>
+<div class="fragment fade-in-then-semi-out">
 <ul>
-<li class="fragment">Many new concepts, eg. multiple dispatch, metaprogramming</li>
-</ul></li>
-<li class="fragment"><del>No small binaries</del>
+<li>Easy to learn, hard to master (like baking bread!)
 <ul>
-<li class="fragment">This is soon possible.</li>
+<li>Many new concepts, eg. multiple dispatch, metaprogramming</li>
 </ul></li>
-<li class="fragment">Unintuitive workflow/file dependency</li>
+</ul>
+</div>
+<div class="fragment fade-in-then-semi-out">
+<ul>
+<li><del>No small binaries</del> This is soon possible.</li>
+</ul>
+</div>
+<div class="fragment fade-in-then-semi-out">
+<ul>
+<li>Unintuitive workflow/file dependency</li>
 </ul>
 </div>
 </section></section>
 <section>
 <section id="this-workshop" class="title-slide slide level1 center">
 <h1>This workshop</h1>
+<div class="fragment fade-in-then-semi-out">
 <ul>
 <li>Aimed at people with zero experience in Julia.</li>
+</ul>
+</div>
+<div class="fragment fade-in-then-semi-out">
+<ul>
 <li>Will cover:
 <ul>
 <li>Basic fundamentals: variables, functions, string manipulation, etc…</li>
 <li>More advanced fundamentals: the type system, multiple dispatch, performance considerations.</li>
 </ul></li>
+</ul>
+</div>
+<div class="fragment fade-in-then-semi-out">
+<ul>
 <li>A taste of the Julia ecosystem</li>
 </ul>
+</div>
 </section>
 <section id="workshop-content" class="slide level2">
 <h2>Workshop content</h2>
@@ -688,99 +771,90 @@
 <li>Fast Fourier Transform -&gt; <a href="https://github.com/JuliaMath/FFTW.jl">FFTW</a></li>
 <li>Symbolic CAS -&gt;<a href="https://symbolics.juliasymbolics.org/dev/">Symbolics</a></li>
 <li>Units -&gt; <a href="https://painterqubits.github.io/Unitful.jl/stable/">Unitful</a></li>
+<li>Bayesian inference -&gt; <a href="https://turinglang.org/">Turing</a></li>
 </ul>
-</section>
-<section id="package-selection-2" class="slide level2">
-<h2>Package selection</h2>
+</section></section>
+<section id="section-1" class="title-slide slide level1 center">
+<h1></h1>
 <p>See more at the <a href="https://docs.sciml.ai/Overview/stable/overview/#Overview-of-Computational-Science-in-Julia-with-SciML">SciML website</a> <!-- ::: --></p>
 <!-- ::: {.column width="45%"} -->
 <!-- Plots, Makie -->
 <!-- Test -->
 <!-- ::: -->
 <!-- :::: -->
-</section></section>
+</section>
+
 <section>
-<section id="extra-slides" class="title-slide slide level1 center">
-<h1>Extra slides</h1>
+<section id="examples" class="title-slide slide level1 center">
+<h1>Examples</h1>
 
 </section>
 <section id="cuda" class="slide level2">
 <h2>CUDA</h2>
-<!-- 
-```{.julia}
-using CUDA
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href=""></a><span class="im">using</span> <span class="bu">CUDA</span></span>
+<span id="cb2-2"><a href=""></a></span>
+<span id="cb2-3"><a href=""></a>N <span class="op">=</span> <span class="fl">1e6</span></span>
+<span id="cb2-4"><a href=""></a>A <span class="op">=</span> CUDA.<span class="fu">fill</span>(<span class="fl">1.0f0</span>, N)</span>
+<span id="cb2-5"><a href=""></a>B <span class="op">=</span> CUDA.<span class="fu">fill</span>(<span class="fl">1.0f0</span>, N)</span>
+<span id="cb2-6"><a href=""></a></span>
+<span id="cb2-7"><a href=""></a>C <span class="op">=</span> A <span class="op">.+</span> B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="stellar-evolution" class="slide level2">
+<h2>Stellar evolution</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href=""></a><span class="kw">abstract type</span> StellarType</span>
+<span id="cb3-2"><a href=""></a><span class="kw">struct</span> MainSequence <span class="op">&lt;:</span><span class="dt"> StellarType </span><span class="kw">end</span></span>
+<span id="cb3-3"><a href=""></a><span class="kw">struct</span> RedGiant     <span class="op">&lt;:</span><span class="dt"> StellarType </span><span class="kw">end</span></span>
+<span id="cb3-4"><a href=""></a></span>
+<span id="cb3-5"><a href=""></a><span class="kw">struct</span> Star{T, tT <span class="op">&lt;:</span><span class="dt"> StellarType</span>}</span>
+<span id="cb3-6"><a href=""></a>    M<span class="op">::</span><span class="dt">T</span></span>
+<span id="cb3-7"><a href=""></a>    L<span class="op">::</span><span class="dt">T</span></span>
+<span id="cb3-8"><a href=""></a>    R<span class="op">::</span><span class="dt">T</span></span>
+<span id="cb3-9"><a href=""></a>    stellar_type<span class="op">::</span><span class="dt">tT</span></span>
+<span id="cb3-10"><a href=""></a><span class="kw">end</span></span>
+<span id="cb3-11"><a href=""></a>    </span>
+<span id="cb3-12"><a href=""></a></span>
+<span id="cb3-13"><a href=""></a><span class="kw">function</span> <span class="fu">stellar_winds</span>(star<span class="op">::</span><span class="dt">Star{T, tT}</span>) <span class="kw">where</span> tT <span class="op">&lt;:</span><span class="dt"> MainSequence</span></span>
+<span id="cb3-14"><a href=""></a>    <span class="cf">return</span> <span class="fu">a_wind_prescription</span>(star.M)</span>
+<span id="cb3-15"><a href=""></a><span class="kw">end</span></span>
+<span id="cb3-16"><a href=""></a></span>
+<span id="cb3-17"><a href=""></a><span class="kw">function</span> <span class="fu">stellar_winds</span>(star<span class="op">::</span><span class="dt">Star{T, tT}</span>) <span class="kw">where</span> tT <span class="op">&lt;:</span><span class="dt"> RedGiant</span></span>
+<span id="cb3-18"><a href=""></a>    <span class="cf">return</span> <span class="fu">a_different_wind_prescription</span>(star.M, star.L)</span>
+<span id="cb3-19"><a href=""></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="n-body-collision" class="slide level2">
+<h2>N-body collision</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href=""></a><span class="kw">abstract type</span> StellarType</span>
+<span id="cb4-2"><a href=""></a><span class="kw">struct</span> MainSequence <span class="op">&lt;:</span><span class="dt"> StellarType </span><span class="kw">end</span></span>
+<span id="cb4-3"><a href=""></a><span class="kw">struct</span> BlackHole     <span class="op">&lt;:</span><span class="dt"> StellarType </span><span class="kw">end</span></span>
+<span id="cb4-4"><a href=""></a></span>
+<span id="cb4-5"><a href=""></a><span class="kw">struct</span> Star{T, tT <span class="op">&lt;:</span><span class="dt"> StellarType</span>}</span>
+<span id="cb4-6"><a href=""></a>    M<span class="op">::</span><span class="dt">T</span></span>
+<span id="cb4-7"><a href=""></a>    L<span class="op">::</span><span class="dt">T</span></span>
+<span id="cb4-8"><a href=""></a>    R<span class="op">::</span><span class="dt">T</span></span>
+<span id="cb4-9"><a href=""></a>    stellar_type<span class="op">::</span><span class="dt">tT</span></span>
+<span id="cb4-10"><a href=""></a><span class="kw">end</span></span>
+<span id="cb4-11"><a href=""></a>    </span>
+<span id="cb4-12"><a href=""></a><span class="fu">check_collision</span>(body1<span class="op">::</span><span class="dt">Star{T, tT &lt;: MainSequence}</span>, body2<span class="op">::</span><span class="dt">Star{T, tT &lt;: MainSequence}</span>) <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb4-13"><a href=""></a><span class="fu">check_collision</span>(body1<span class="op">::</span><span class="dt">Star{T, tT &lt;: MainSequence}</span>, body2<span class="op">::</span><span class="dt">Star{T, tT &lt;: BlackHole}</span>)    <span class="op">=</span> <span class="op">...</span></span>
+<span id="cb4-14"><a href=""></a><span class="fu">check_collision</span>(body1<span class="op">::</span><span class="dt">Star{T, tT &lt;: BlackHole}</span>,    body2<span class="op">::</span><span class="dt">Star{T, tT &lt;: BlackHole}</span>)    <span class="op">=</span> <span class="op">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="unicode" class="slide level2">
+<h2>Unicode</h2>
 
-N = 1e6
-A = CUDA.fill(1.0f0, N)
-B = CUDA.fill(1.0f0, N)
-
-C = A .+ B
-```
-
-## Stellar evolution
-
-```{.julia}
-abstract type StellarType
-struct MainSequence <: StellarType end
-struct RedGiant     <: StellarType end
-
-struct Star{T, tT <: StellarType}
-    M::T
-    L::T
-    R::T
-    stellar_type::tT
-end
-    
-
-function stellar_winds(star::Star{T, tT}) where tT <: MainSequence
-    return a_wind_prescription(star.M)
-end
-
-function stellar_winds(star::Star{T, tT}) where tT <: RedGiant
-    return a_different_wind_prescription(star.M, star.L)
-end
-```
-
-## N-body collision
-
-```{.julia}
-abstract type StellarType
-struct MainSequence <: StellarType end
-struct BlackHole     <: StellarType end
-
-struct Star{T, tT <: StellarType}
-    M::T
-    L::T
-    R::T
-    stellar_type::tT
-end
-    
-check_collision(body1::Star{T, tT <: MainSequence}, body2::Star{T, tT <: MainSequence}) = ...
-check_collision(body1::Star{T, tT <: MainSequence}, body2::Star{T, tT <: BlackHole})    = ...
-check_collision(body1::Star{T, tT <: BlackHole},    body2::Star{T, tT <: BlackHole})    = ...
-```
-
-## Unicode
-
-![](figures/pn1.png){width=60%}
-
-
-```{.julia}
-r̄ = r̄₁ - r̄₂
-v̄ = v̄₁ - v̄₂
-r = norm(r̄) # r₁₂
-r⁻¹ = 1/r
-n = r̄*r⁻¹
-v₁v₂ = dot(v̄₁, v̄₂) 
-nv₁ = dot(n, v̄₁)
-nv₂ = dot(n, v̄₂)
-Gr⁻¹ = G*r⁻¹
-Gr⁻² = Gr⁻¹*r⁻¹
-
-# PN-1 acceleration
-ai = @. n*(Gr⁻²*m₂)*(5*Gr⁻¹*m₁ + 4*Gr⁻¹*m₂ + 3/2*nv₂^2 - v₁² + 4*v₁v₂ - 2*v₂²) +
-        (4*nv₁ - 3*nv₂)*v̄
-``` -->
+<img data-src="pn1.png" style="width:60.0%" class="r-stretch"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href=""></a>r̄ <span class="op">=</span> r̄₁ <span class="op">-</span> r̄₂</span>
+<span id="cb5-2"><a href=""></a>v̄ <span class="op">=</span> v̄₁ <span class="op">-</span> v̄₂</span>
+<span id="cb5-3"><a href=""></a>r <span class="op">=</span> <span class="fu">norm</span>(r̄) <span class="co"># r₁₂</span></span>
+<span id="cb5-4"><a href=""></a>r⁻¹ <span class="op">=</span> <span class="fl">1</span><span class="op">/</span>r</span>
+<span id="cb5-5"><a href=""></a>n <span class="op">=</span> r̄<span class="op">*</span>r⁻¹</span>
+<span id="cb5-6"><a href=""></a>v₁v₂ <span class="op">=</span> <span class="fu">dot</span>(v̄₁, v̄₂) </span>
+<span id="cb5-7"><a href=""></a>nv₁ <span class="op">=</span> <span class="fu">dot</span>(n, v̄₁)</span>
+<span id="cb5-8"><a href=""></a>nv₂ <span class="op">=</span> <span class="fu">dot</span>(n, v̄₂)</span>
+<span id="cb5-9"><a href=""></a>Gr⁻¹ <span class="op">=</span> G<span class="op">*</span>r⁻¹</span>
+<span id="cb5-10"><a href=""></a>Gr⁻² <span class="op">=</span> Gr⁻¹<span class="op">*</span>r⁻¹</span>
+<span id="cb5-11"><a href=""></a></span>
+<span id="cb5-12"><a href=""></a><span class="co"># PN-1 acceleration</span></span>
+<span id="cb5-13"><a href=""></a>ai <span class="op">=</span> @. <span class="fu">n*</span>(Gr⁻²<span class="op">*</span>m₂)<span class="fu">*</span>(<span class="fl">5</span><span class="op">*</span>Gr⁻¹<span class="op">*</span>m₁ <span class="op">+</span> <span class="fl">4</span><span class="op">*</span>Gr⁻¹<span class="op">*</span>m₂ <span class="op">+</span> <span class="fl">3</span><span class="op">/</span><span class="fl">2</span><span class="op">*</span>nv₂<span class="op">^</span><span class="fl">2</span> <span class="op">-</span> v₁² <span class="op">+</span> <span class="fl">4</span><span class="op">*</span>v₁v₂ <span class="op">-</span> <span class="fl">2</span><span class="op">*</span>v₂²) <span class="op">+</span></span>
+<span id="cb5-14"><a href=""></a>        (<span class="fl">4</span><span class="op">*</span>nv₁ <span class="op">-</span> <span class="fl">3</span><span class="op">*</span>nv₂)<span class="op">*</span>v̄</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p>API, January 2025</p>

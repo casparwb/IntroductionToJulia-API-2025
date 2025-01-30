@@ -222,7 +222,15 @@ A dynamic, general-purpose programming language designed to be both accessible a
 - Also split into sub-packages for different solvers
 ::: -->
 
-## 
+## Want more?
+
+- The eScience center is organizing a Julia workshop on Febuary 11th
+- Free
+- Good follow-up to this workshop
+    - working with the REPL, developing packages, optimization
+
+[Link: Efficient Computing in Julia](https://www.esciencecenter.nl/event/efficient-computing-in-julia/)
+
 
 ## Resources
 

@@ -10,7 +10,7 @@
 <link href="presentation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.57">
 
-  <title>Introduction to Julia workshop</title>
+  <title>Introduction to Julia: A workshop</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -439,7 +439,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-position="bottom right" data-background-size="20%" class="quarto-title-block center">
-  <h1 class="title">Introduction to Julia workshop</h1>
+  <h1 class="title">Introduction to Julia: A workshop</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -683,51 +683,29 @@
 </ul></li>
 <li>Feel free to use the resources in this repository.</li>
 </ul>
-</section></section>
-<section>
-<section id="a-taste-of-the-ecosystem" class="title-slide slide level1 center">
-<h1>A taste of the ecosystem</h1>
+<!-- # A taste of the ecosystem
 
-</section>
-<section id="differentialequations.jl" class="slide level2">
-<h2>DifferentialEquations.jl</h2>
-<div>
-<ul>
-<li class="fragment">A huge package for solving differential equations (DEs)</li>
-<li class="fragment">Support for
-<ul>
-<li class="fragment">Ordinary DEs, split ODEs, stochastic ODEs, differential algebraic equations (DAEs), delay DEs, many more</li>
-</ul></li>
-<li class="fragment">One of, if not the fastest DE solver in any language</li>
-<li class="fragment">Supports GPU acceleration</li>
-<li class="fragment">Automatic differentiation</li>
-<li class="fragment">Arbitrary precision arithmetic</li>
-</ul>
-</div>
-</section>
-<section id="differentialequations.jl-1" class="slide level2">
-<h2>DifferentialEquations.jl</h2>
-<div>
-<ul>
-<li class="fragment">You never need all the functionality</li>
-<li class="fragment">Takes a long time to precompile</li>
-<li class="fragment">Package is split into sub-packagse</li>
-<li class="fragment">Ordinary differential equations: OrdinaryDiffEq.jl</li>
-<li class="fragment">Still a big package, contains on the order <a href="https://docs.sciml.ai/DiffEqDocs/stable/solvers/ode_solve/">100s of solvers</a></li>
-<li class="fragment">Also split into sub-packages for different solvers</li>
-</ul>
-</div>
-</section>
-<section id="dataframes.jl" class="slide level2">
-<h2>DataFrames.jl</h2>
-<ul>
-<li>Julia package for working with tabular data</li>
-<li>Similar design to pandas</li>
-<li>Well integrated into the Julia ecosystem</li>
-<li>Fast, multithreaded</li>
-<li>Intuitive syntax</li>
-<li>Feature rich</li>
-</ul>
+## DifferentialEquations.jl
+
+::: {.incremental}
+- A huge package for solving differential equations (DEs)
+- Support for
+    - Ordinary DEs, split ODEs, stochastic ODEs, differential algebraic equations (DAEs), delay DEs, many more
+- One of, if not the fastest DE solver in any language
+- Supports GPU acceleration
+- Automatic differentiation
+- Arbitrary precision arithmetic
+:::
+
+## DifferentialEquations.jl
+::: {.incremental}
+- You never need all the functionality
+- Takes a long time to precompile
+- Package is split into sub-packagse
+- Ordinary differential equations: OrdinaryDiffEq.jl
+- Still a big package, contains on the order [100s of solvers](https://docs.sciml.ai/DiffEqDocs/stable/solvers/ode_solve/)
+- Also split into sub-packages for different solvers
+::: -->
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
@@ -852,8 +830,8 @@
 <span id="cb5-10"><a href=""></a>Gr⁻² <span class="op">=</span> Gr⁻¹<span class="op">*</span>r⁻¹</span>
 <span id="cb5-11"><a href=""></a></span>
 <span id="cb5-12"><a href=""></a><span class="co"># PN-1 acceleration</span></span>
-<span id="cb5-13"><a href=""></a>ai <span class="op">=</span> @. <span class="fu">n*</span>(Gr⁻²<span class="op">*</span>m₂)<span class="fu">*</span>(<span class="fl">5</span><span class="op">*</span>Gr⁻¹<span class="op">*</span>m₁ <span class="op">+</span> <span class="fl">4</span><span class="op">*</span>Gr⁻¹<span class="op">*</span>m₂ <span class="op">+</span> <span class="fl">3</span><span class="op">/</span><span class="fl">2</span><span class="op">*</span>nv₂<span class="op">^</span><span class="fl">2</span> <span class="op">-</span> v₁² <span class="op">+</span> <span class="fl">4</span><span class="op">*</span>v₁v₂ <span class="op">-</span> <span class="fl">2</span><span class="op">*</span>v₂²) <span class="op">+</span></span>
-<span id="cb5-14"><a href=""></a>        (<span class="fl">4</span><span class="op">*</span>nv₁ <span class="op">-</span> <span class="fl">3</span><span class="op">*</span>nv₂)<span class="op">*</span>v̄</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-13"><a href=""></a>ai <span class="op">=</span> @. <span class="fu">n*</span>(Gr⁻²<span class="op">*</span>m₂)<span class="fu">*</span>(<span class="fl">5</span>Gr⁻¹<span class="op">*</span>m₁ <span class="op">+</span> <span class="fl">4</span>Gr⁻¹<span class="op">*</span>m₂ <span class="op">+</span> <span class="fl">3</span><span class="op">/</span><span class="fl">2</span><span class="op">*</span>nv₂<span class="op">^</span><span class="fl">2</span> <span class="op">-</span> v₁² <span class="op">+</span> <span class="fl">4</span>v₁v₂ <span class="op">-</span> <span class="fl">2</span>v₂²) <span class="op">+</span></span>
+<span id="cb5-14"><a href=""></a>        (<span class="fl">4</span>nv₁ <span class="op">-</span> <span class="fl">3</span>nv₂)<span class="op">*</span>v̄</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p>API, January 2025</p>

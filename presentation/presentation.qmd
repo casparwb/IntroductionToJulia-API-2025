@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Julia workshop"
+title: "Introduction to Julia: A workshop"
 # subtitle: "How I Learned To Stop Worrying and Love Programming."
 format: 
     julia-revealjs:
@@ -198,7 +198,7 @@ A dynamic, general-purpose programming language designed to be both accessible a
 - Feel free to use the resources in this repository.
 
 
-# A taste of the ecosystem
+<!-- # A taste of the ecosystem
 
 ## DifferentialEquations.jl
 
@@ -220,15 +220,7 @@ A dynamic, general-purpose programming language designed to be both accessible a
 - Ordinary differential equations: OrdinaryDiffEq.jl
 - Still a big package, contains on the order [100s of solvers](https://docs.sciml.ai/DiffEqDocs/stable/solvers/ode_solve/)
 - Also split into sub-packages for different solvers
-:::
-
-## DataFrames.jl
-- Julia package for working with tabular data
-- Similar design to pandas
-- Well integrated into the Julia ecosystem
-- Fast, multithreaded
-- Intuitive syntax 
-- Feature rich
+::: -->
 
 ## 
 
@@ -353,8 +345,8 @@ Gr⁻¹ = G*r⁻¹
 Gr⁻² = Gr⁻¹*r⁻¹
 
 # PN-1 acceleration
-ai = @. n*(Gr⁻²*m₂)*(5*Gr⁻¹*m₁ + 4*Gr⁻¹*m₂ + 3/2*nv₂^2 - v₁² + 4*v₁v₂ - 2*v₂²) +
-        (4*nv₁ - 3*nv₂)*v̄
+ai = @. n*(Gr⁻²*m₂)*(5Gr⁻¹*m₁ + 4Gr⁻¹*m₂ + 3/2*nv₂^2 - v₁² + 4v₁v₂ - 2v₂²) +
+        (4nv₁ - 3nv₂)*v̄
 ```
 
 

@@ -36,7 +36,6 @@ format:
     - At least those where the professor let me use it
 - Used it for my MSc thesis
 - Currently using it for my PhD work
-- Know a lot about Julia, but I am not a software engineer
 
 # The Julia programming language
 

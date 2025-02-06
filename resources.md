@@ -7,6 +7,7 @@
 - [The Julia slack](julialang.slack.com)
 - [CUDA in Julia](https://cuda.juliagpu.org/stable/)
 - [Julia on HPC](https://github.com/JuliaParallel/JUHPC)
+- [(Free ebook) Fundamentals of Numerical Computation: Julia Edition](https://fncbook.com/)
 
 ## Package selection
 
